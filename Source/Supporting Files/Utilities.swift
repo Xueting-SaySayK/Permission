@@ -25,8 +25,10 @@
 extension UIApplication {
     internal func presentViewController(_ viewController: UIViewController, animated: Bool = true, completion: (() -> Void)? = nil) {
         let window = UIWindow(frame: UIScreen.main.bounds)
+        window.windowLevel = UIWindowLevelAlert
         window.rootViewController = UIViewController()
         window.isHidden = false
+
         window.rootViewController?.present(viewController, animated: true, completion: nil)
     }
 }
