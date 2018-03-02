@@ -23,18 +23,11 @@
 //
 
 extension UIApplication {
-    fileprivate var topViewController: UIViewController? {
-        var vc = delegate?.window??.rootViewController
-        
-        while let presentedVC = vc?.presentedViewController {
-            vc = presentedVC
-        }
-
-        return vc
-    }
-    
     internal func presentViewController(_ viewController: UIViewController, animated: Bool = true, completion: (() -> Void)? = nil) {
-        topViewController?.present(viewController, animated: animated, completion: completion)
+        let window = UIWindow(frame: UIScreen.main.bounds)
+        window.rootViewController = UIViewController()
+        window.isHidden = false
+        window.rootViewController?.present(viewController, animated: true, completion: nil)
     }
 }
 
